@@ -1,7 +1,6 @@
 import videojs from 'video.js'
 import { version as VERSION } from '../package.json'
 // import request from 'request';
-
 // Default options for the plugin.
 const defaults = {}
 
@@ -162,7 +161,7 @@ class vttThumbnailsPlugin {
 
   setupThumbnailElement (data) {
     const mouseDisplay = this.player.$('.vjs-mouse-display')
-    this.progressBar = this.player.$('.vjs-progress-control')
+    this.progressBar = this.player.$('.vjs-progress-holder')
     const thumbHolder = document.createElement('div')
     thumbHolder.setAttribute('class', 'vjs-vtt-thumbnail-display')
     this.progressBar.appendChild(thumbHolder)
@@ -229,8 +228,9 @@ class vttThumbnailsPlugin {
       return this.hideThumbnailHolder()
     }
 
-    const xPos = percent * width
+    
     const thumbnailWidth=parseInt(currentStyle.width)
+    const xPos = percent * width
     const halfthumbnailWidth=  thumbnailWidth>> 1
     const marginRight= width-(xPos+halfthumbnailWidth);
     const marginLeft= xPos-halfthumbnailWidth;
